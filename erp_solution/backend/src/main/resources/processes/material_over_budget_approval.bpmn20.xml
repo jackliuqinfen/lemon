@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+             xmlns:flowable="http://flowable.org/bpmn" 
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" 
+             xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" 
+             xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" 
+             typeLanguage="http://www.w3.org/2001/XMLSchema" 
+             expressionLanguage="http://www.w3.org/1999/XPath" 
+             targetNamespace="http://www.flowable.org/processdef">
+
+  <process id="material_over_budget_approval" name="物资采购超支特批流程" isExecutable="true">
+    <documentation>当物资采购金额超出 CBS 目标成本基准时触发的特批流程</documentation>
+
+    <startEvent id="startEvent1" name="发起采购申请" flowable:initiator="initiator"></startEvent>
+    <sequenceFlow id="flow1" sourceRef="startEvent1" targetRef="projectManagerApproval"></sequenceFlow>
+
+    <userTask id="projectManagerApproval" name="项目经理审批" flowable:candidateGroups="ROLE_PM">
+      <documentation>项目经理确认超支原因是否合理</documentation>
+    </userTask>
+    <sequenceFlow id="flow2" sourceRef="projectManagerApproval" targetRef="gateway1"></sequenceFlow>
+
+    <exclusiveGateway id="gateway1" name="PM审批结果"></exclusiveGateway>
+    
+    <!-- PM 驳回 -->
+    <sequenceFlow id="flow3" sourceRef="gateway1" targetRef="endEvent_rejected">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approved == false}]]></conditionExpression>
+    </sequenceFlow>
+
+    <!-- PM 同意，进入超支金额判定 -->
+    <sequenceFlow id="flow4" sourceRef="gateway1" targetRef="gateway2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approved == true}]]></conditionExpression>
+    </sequenceFlow>
+
+    <exclusiveGateway id="gateway2" name="超支金额判定"></exclusiveGateway>
+
+    <!-- 超支 <= 5万，直接由工程部审批即可 -->
+    <sequenceFlow id="flow5" sourceRef="gateway2" targetRef="engineeringDeptApproval">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${overrunAmount <= 50000}]]></conditionExpression>
+    </sequenceFlow>
+
+    <!-- 超支 > 5万，需要副总特批 -->
+    <sequenceFlow id="flow6" sourceRef="gateway2" targetRef="vpApproval">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${overrunAmount > 50000}]]></conditionExpression>
+    </sequenceFlow>
+
+    <userTask id="engineeringDeptApproval" name="工程部审批" flowable:candidateGroups="ROLE_ENGINEERING"></userTask>
+    <sequenceFlow id="flow7" sourceRef="engineeringDeptApproval" targetRef="endEvent_approved"></sequenceFlow>
+
+    <userTask id="vpApproval" name="副总特批" flowable:candidateGroups="ROLE_VP"></userTask>
+    <sequenceFlow id="flow8" sourceRef="vpApproval" targetRef="endEvent_approved"></sequenceFlow>
+
+    <endEvent id="endEvent_approved" name="审批通过">
+      <documentation>自动更新业务表状态为：特批通过，允许采购</documentation>
+    </endEvent>
+    
+    <endEvent id="endEvent_rejected" name="审批驳回"></endEvent>
+
+  </process>
+</definitions>

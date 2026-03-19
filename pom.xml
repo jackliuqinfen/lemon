@@ -31,6 +31,11 @@
   </prerequisites>
   <dependencies>
     <dependency>
+      <groupId>javax.annotation</groupId>
+      <artifactId>javax.annotation-api</artifactId>
+      <version>1.3.2</version>
+    </dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <scope>test</scope>
@@ -167,6 +172,12 @@
     </dependency><dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>
+      <version>${hibernate-validator.version}</version>
+    </dependency>
+    <dependency>
+       <groupId>org.glassfish</groupId>
+       <artifactId>javax.el</artifactId>
+       <version>3.0.0</version>
     </dependency><dependency>
       <groupId>commons-dbcp</groupId>
       <artifactId>commons-dbcp</artifactId>
@@ -1340,7 +1351,7 @@
   </reporting>
 
   <properties>
-    <java.version>1.6</java.version>
+    <java.version>1.8</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <tagBase>svn://localhost/mossle/tags</tagBase>
@@ -1363,10 +1374,10 @@
     -->
     <spring-security.version>3.2.8.RELEASE</spring-security.version>
     <hibernate.version>4.3.11.Final</hibernate.version>
-    <hibernate-validator.version>5.2.2.Final</hibernate-validator.version>
+    <hibernate-validator.version>6.0.13.Final</hibernate-validator.version>
     <javassist.version>3.20.0-GA</javassist.version>
     <ehcache.version>2.10.1</ehcache.version>
-    <validation.version>1.1.0.Final</validation.version>
+    <validation.version>2.0.1.Final</validation.version>
     <hsqldb.version>2.3.3</hsqldb.version>
     <slf4j.version>1.7.12</slf4j.version>
     <logback.version>1.1.3</logback.version>
@@ -1619,7 +1630,7 @@
               <webDefaultXml>webdefault.xml</webDefaultXml>
               <webAppSourceDirectory>webapp</webAppSourceDirectory>
               <webAppConfig>
-                <contextPath>/${project.artifactId}</contextPath>
+                <contextPath>/</contextPath>
               </webAppConfig>
             </configuration>
           </plugin>
@@ -1650,7 +1661,7 @@
               <webDefaultXml>webdefault.xml</webDefaultXml>
               <webAppSourceDirectory>webapp</webAppSourceDirectory>
               <webAppConfig>
-                <contextPath>/${project.artifactId}</contextPath>
+                <contextPath>/</contextPath>
               </webAppConfig>
             </configuration>
           </plugin>

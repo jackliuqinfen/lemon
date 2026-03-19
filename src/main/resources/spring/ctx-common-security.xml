@@ -14,6 +14,9 @@
 	<http security="none" pattern="/**/*.gif"/>
 	<http security="none" pattern="/**/*.png"/>
 	<http security="none" pattern="/avatar/api/**"/>
+    <!-- Temporary bypass for B2B API development -->
+    <http security="none" pattern="/api/v1/**"/>
+    <http security="none" pattern="/b2b/test"/>
 	<!--
 	<http security="none" pattern="/common/login.jsp"/>
 	-->

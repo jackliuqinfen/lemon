@@ -1,0 +1,467 @@
+/* 
+ * Lemon B2B Modern Enterprise UI/UX Overrides
+ * Architected for Global Engineering Consulting Platforms
+ * Based on 8pt Grid System & WCAG 2.2 AA Contrast Standards
+ */
+
+ :root {
+    /* Color Tokens - Industrial Blue (Primary) */
+    --b2b-color-primary: #0F62FE;
+    --b2b-color-primary-hover: #0043CE;
+    --b2b-color-primary-light: #EDF5FF;
+    
+    /* Semantic Colors */
+    --b2b-color-success: #198038;
+    --b2b-color-warning: #F1C21B;
+    --b2b-color-error: #DA1E28;
+    --b2b-color-info: #0043CE;
+
+    /* Neutrals & Surfaces */
+    --b2b-surface-base: #F4F4F4;
+    --b2b-surface-card: #FFFFFF;
+    --b2b-surface-hover: #E8E8E8;
+    --b2b-border-subtle: #E0E0E0;
+    --b2b-border-strong: #C6C6C6;
+
+    /* Typography */
+    --b2b-text-primary: #161616;
+    --b2b-text-secondary: #525252;
+    --b2b-text-placeholder: #A8A8A8;
+    --b2b-text-on-color: #FFFFFF;
+
+    /* Spacing (8pt Grid) */
+    --b2b-spacing-1: 4px;
+    --b2b-spacing-2: 8px;
+    --b2b-spacing-3: 16px;
+    --b2b-spacing-4: 24px;
+    --b2b-spacing-5: 32px;
+    --b2b-spacing-6: 48px;
+
+    /* Shadows & Radii */
+    --b2b-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+    --b2b-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+    --b2b-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.14);
+    --b2b-radius-sm: 4px;
+    --b2b-radius-md: 6px;
+    --b2b-radius-lg: 8px;
+    
+    /* Animation */
+    --b2b-transition-fast: 150ms cubic-bezier(0.2, 0, 0.38, 0.9);
+    --b2b-transition-standard: 250ms cubic-bezier(0.2, 0, 0.38, 0.9);
+}
+
+/* ==========================================================================
+   1. Global Typography & Reset
+   ========================================================================== */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    color: var(--b2b-text-primary);
+    background-color: var(--b2b-surface-base);
+    line-height: 1.5;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-weight: 600;
+    color: var(--b2b-text-primary);
+    margin-top: 0;
+    margin-bottom: var(--b2b-spacing-3);
+}
+
+a {
+    color: var(--b2b-color-primary);
+    transition: color var(--b2b-transition-fast);
+}
+
+a:hover {
+    color: var(--b2b-color-primary-hover);
+    text-decoration: none;
+}
+
+/* ==========================================================================
+   2. Mossle Widget Overrides (Cards & Containers)
+   ========================================================================== */
+.m-widget {
+    background: var(--b2b-surface-card);
+    border: 1px solid var(--b2b-border-subtle);
+    border-radius: var(--b2b-radius-md);
+    box-shadow: var(--b2b-shadow-sm);
+    margin-bottom: var(--b2b-spacing-4);
+    transition: box-shadow var(--b2b-transition-standard);
+    overflow: hidden; /* For border radius to apply to headers */
+}
+
+.m-widget:hover {
+    box-shadow: var(--b2b-shadow-md);
+}
+
+.m-widget .m-widget-header {
+    background: var(--b2b-surface-card);
+    border-bottom: 1px solid var(--b2b-border-subtle);
+    padding: var(--b2b-spacing-3) var(--b2b-spacing-4);
+    display: flex;
+    align-items: center;
+}
+
+.m-widget .m-widget-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--b2b-text-primary);
+}
+
+.m-widget .m-widget-body {
+    padding: var(--b2b-spacing-4);
+}
+
+/* ==========================================================================
+   3. Bootstrap Buttons Modernization
+   ========================================================================== */
+.btn {
+    font-weight: 500;
+    border-radius: var(--b2b-radius-sm);
+    padding: 6px 16px; /* 8pt grid alignment */
+    transition: all var(--b2b-transition-fast);
+    box-shadow: none !important;
+}
+
+.btn-primary {
+    background-color: var(--b2b-color-primary);
+    border-color: var(--b2b-color-primary);
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    background-color: var(--b2b-color-primary-hover) !important;
+    border-color: var(--b2b-color-primary-hover) !important;
+    transform: translateY(-1px);
+}
+
+.btn-default {
+    color: var(--b2b-text-primary);
+    background-color: var(--b2b-surface-card);
+    border-color: var(--b2b-border-strong);
+}
+
+.btn-default:hover, .btn-default:focus {
+    background-color: var(--b2b-surface-hover) !important;
+    border-color: var(--b2b-text-secondary) !important;
+    color: var(--b2b-text-primary) !important;
+}
+
+/* ==========================================================================
+   4. Tables (Data Grids)
+   ========================================================================== */
+.table, .m-table {
+    background-color: var(--b2b-surface-card);
+    margin-bottom: 0;
+}
+
+.table > thead > tr > th, .m-table > thead > tr > th {
+    border-bottom: 2px solid var(--b2b-border-strong);
+    color: var(--b2b-text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    padding: var(--b2b-spacing-2) var(--b2b-spacing-3);
+    background-color: var(--b2b-surface-base);
+}
+
+.table > tbody > tr > td, .m-table > tbody > tr > td {
+    padding: var(--b2b-spacing-3);
+    vertical-align: middle;
+    border-top: 1px solid var(--b2b-border-subtle);
+    color: var(--b2b-text-primary);
+}
+
+.table-hover > tbody > tr:hover, .m-table tbody > tr:hover {
+    background-color: var(--b2b-color-primary-light);
+}
+
+/* ==========================================================================
+   5. Forms & Inputs
+   ========================================================================== */
+.form-control {
+    border-radius: var(--b2b-radius-sm);
+    border: 1px solid var(--b2b-border-strong);
+    box-shadow: none;
+    padding: 8px 12px;
+    height: auto; /* override fixed height for better font scaling */
+    color: var(--b2b-text-primary);
+    transition: border-color var(--b2b-transition-fast), box-shadow var(--b2b-transition-fast);
+}
+
+.form-control:focus {
+    border-color: var(--b2b-color-primary);
+    box-shadow: 0 0 0 2px rgba(15, 98, 254, 0.2);
+}
+
+.control-label {
+    font-weight: 500;
+    color: var(--b2b-text-secondary);
+    margin-bottom: var(--b2b-spacing-1);
+}
+
+/* ==========================================================================
+   6. Navigation & Navbar
+   ========================================================================== */
+.navbar-default {
+    background-color: #161616; /* Dark header for enterprise feel */
+    border-color: transparent;
+    box-shadow: var(--b2b-shadow-sm);
+}
+
+.navbar-default .navbar-brand,
+.navbar-default .navbar-nav > li > a {
+    color: #F4F4F4;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #FFFFFF;
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* Sidebar styling if exists */
+.sidebar {
+    background-color: var(--b2b-surface-card);
+    border-right: 1px solid var(--b2b-border-subtle);
+}
+
+/* ==========================================================================
+   7. Modals
+   ========================================================================== */
+.modal-content {
+    border-radius: var(--b2b-radius-lg);
+    border: none;
+    box-shadow: var(--b2b-shadow-lg);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--b2b-border-subtle);
+    padding: var(--b2b-spacing-4);
+    background-color: var(--b2b-surface-base);
+    border-top-left-radius: var(--b2b-radius-lg);
+    border-top-right-radius: var(--b2b-radius-lg);
+}
+
+.modal-footer {
+    border-top: 1px solid var(--b2b-border-subtle);
+    padding: var(--b2b-spacing-4);
+    background-color: var(--b2b-surface-base);
+    border-bottom-left-radius: var(--b2b-radius-lg);
+    border-bottom-right-radius: var(--b2b-radius-lg);
+}
+
+/* ==========================================================================
+   9. Modern B2B App Layout (Sidebar + Topbar + Main)
+   ========================================================================== */
+/* The main wrapper replacing standard bootstrap row-fluid */
+.b2b-app-layout {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--b2b-surface-base);
+}
+
+/* Sidebar (The Spine) */
+.b2b-sidebar {
+    width: 260px;
+    background-color: #001141; /* Deep industrial dark blue */
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    transition: width var(--b2b-transition-standard);
+    z-index: 100;
+}
+
+.b2b-sidebar-header {
+    height: 64px;
+    padding: 0 var(--b2b-spacing-4);
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.b2b-sidebar-brand {
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFFFFF;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+
+.b2b-sidebar-nav {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: var(--b2b-spacing-3) 0;
+}
+
+.b2b-nav-item {
+    padding: var(--b2b-spacing-2) var(--b2b-spacing-4);
+    display: flex;
+    align-items: center;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: all var(--b2b-transition-fast);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.b2b-nav-item:hover, .b2b-nav-item.active {
+    color: #FFFFFF;
+    background-color: rgba(255,255,255,0.1);
+    text-decoration: none;
+}
+
+.b2b-nav-item i {
+    margin-right: var(--b2b-spacing-3);
+    font-size: 18px;
+    width: 20px;
+    text-align: center;
+}
+
+/* Main Content Area */
+.b2b-main-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Topbar (The Brain) */
+.b2b-topbar {
+    height: 64px;
+    background-color: var(--b2b-surface-card);
+    border-bottom: 1px solid var(--b2b-border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--b2b-spacing-4);
+    flex-shrink: 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    z-index: 90;
+}
+
+.b2b-topbar-search {
+    flex-grow: 1;
+    max-width: 480px;
+    margin-right: var(--b2b-spacing-4);
+    position: relative;
+}
+
+.b2b-topbar-search .form-control {
+    border-radius: var(--b2b-radius-pill);
+    padding-left: 40px;
+    background-color: var(--b2b-surface-base);
+    border-color: transparent;
+}
+
+.b2b-topbar-search .form-control:focus {
+    background-color: var(--b2b-surface-card);
+    border-color: var(--b2b-color-primary);
+}
+
+.b2b-topbar-search i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--b2b-text-placeholder);
+}
+
+.b2b-topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--b2b-spacing-3);
+}
+
+.b2b-action-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--b2b-text-secondary);
+    background: transparent;
+    border: none;
+    transition: all var(--b2b-transition-fast);
+    cursor: pointer;
+}
+
+.b2b-action-btn:hover {
+    background-color: var(--b2b-surface-hover);
+    color: var(--b2b-color-primary);
+}
+
+/* Scrollable Content Area */
+.b2b-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: var(--b2b-spacing-5);
+}
+
+/* Override existing body styling when layout is active */
+body.b2b-modern-body {
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   10. Dashboard Widgets (Project 360 & Workspace)
+   ========================================================================== */
+.b2b-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--b2b-spacing-4);
+}
+
+.b2b-col-4 { grid-column: span 4; }
+.b2b-col-8 { grid-column: span 8; }
+.b2b-col-12 { grid-column: span 12; }
+
+@media (max-width: 1200px) {
+    .b2b-col-4, .b2b-col-8 { grid-column: span 12; }
+}
+
+.b2b-stat-card {
+    background: var(--b2b-surface-card);
+    border-radius: var(--b2b-radius-md);
+    padding: var(--b2b-spacing-4);
+    box-shadow: var(--b2b-shadow-sm);
+    border: 1px solid var(--b2b-border-subtle);
+    display: flex;
+    align-items: center;
+}
+
+.b2b-stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--b2b-radius-md);
+    background-color: var(--b2b-color-primary-light);
+    color: var(--b2b-color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-right: var(--b2b-spacing-3);
+}
+
+.b2b-stat-content h4 {
+    margin: 0;
+    font-size: 14px;
+    color: var(--b2b-text-secondary);
+    font-weight: 500;
+}
+
+.b2b-stat-content .b2b-stat-value {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--b2b-text-primary);
+    margin-top: var(--b2b-spacing-1);
+    line-height: 1.2;
+}

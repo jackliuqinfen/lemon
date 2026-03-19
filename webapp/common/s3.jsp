@@ -8,6 +8,13 @@
     <link rel="shortcut icon" type="image/x-icon" href="${cdnPrefix}/public/mossle/0.0.11/favicon.ico" />
     <!-- bootstrap -->
     <link rel='stylesheet' href='${cdnPrefix}/public/bootstrap/3.3.7/css/bootstrap.min.css' type='text/css' media='screen' />
+    
+    <!-- Lemon B2B Modern Theme Overrides -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="${cdnPrefix}/public/mossle/b2b-modern/css/lemon-b2b-modern.css" type="text/css" media="screen" />
+
 	<style type="text/css">
 .navbar-search .search-query {
   -webkit-border-radius: 15px;
